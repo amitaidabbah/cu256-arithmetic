@@ -10,7 +10,7 @@
 #include <torch/torch.h>
 #include <stdexcept>
 
-namespace bit256 {
+namespace cu256bit {
 
 /**
  * @brief Compares two 256-bit integer tensors
@@ -110,4 +110,4 @@ torch::Tensor modular_add(const torch::Tensor& a, const torch::Tensor& b, const 
     return modular_add_cuda(a, b, const_cast<torch::Tensor&>(m));
 }
 
-} // namespace bit256 
+} // namespace cu256bit 

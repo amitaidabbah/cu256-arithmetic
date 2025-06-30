@@ -44,7 +44,7 @@ int main() {
 
     // Perform addition using the library
     try {
-        bit256::add(a, b, result, carry);
+        cu256bit::add(a, b, result, carry);
         
         std::cout << "Result (A + B):" << std::endl;
         print_uint256(result.cpu()[0]);
@@ -59,7 +59,7 @@ int main() {
     // Test comparison
     auto compare_result = torch::zeros({1}, torch::kInt32).cuda();
     try {
-        bit256::compare(a, b, compare_result);
+        cu256bit::compare(a, b, compare_result);
         std::cout << "Comparison result (A >= B): " << compare_result.cpu().item<int32_t>() << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error during comparison: " << e.what() << std::endl;

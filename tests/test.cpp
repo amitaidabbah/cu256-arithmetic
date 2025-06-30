@@ -59,7 +59,7 @@ void test_comp_256bit() {
     }
 
     // Perform comparison using the CUDA function
-    bit256::compare(a, b, o);
+    cu256bit::compare(a, b, o);
 
     cudaDeviceSynchronize();
 
@@ -114,7 +114,7 @@ void test_add_256bit() {
         expected[0][i] = static_cast<int32_t>(sum);
     }
 
-    bit256::add(a, b, o, c);
+    cu256bit::add(a, b, o, c);
 
     std::cout << "Input A:" << std::endl;
     print_uint256(a.cpu()[0]);
@@ -157,7 +157,7 @@ void test_sub_256bit() {
         expected[0][i] = (b[0][i].item<int32_t>() - a[0][i].item<int32_t>());
     }
 
-    bit256::subtract(b, a, o);
+    cu256bit::subtract(b, a, o);
 
     std::cout << "Input A:" << std::endl;
     print_uint256(a.cpu()[0]);
@@ -200,7 +200,7 @@ void test_modular_add_256bit() {
         expected[0][i] = (a[0][i].item<int32_t>() + b[0][i].item<int32_t>()) % m[0][i].item<int32_t>();
     }
 
-    torch::Tensor o_gpu = bit256::modular_add(a, b, m);
+    torch::Tensor o_gpu = cu256bit::modular_add(a, b, m);
 
     std::cout << "Input A:" << std::endl;
     print_uint256(a.cpu()[0]);

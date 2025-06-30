@@ -16,10 +16,10 @@ This library provides GPU-accelerated 256-bit integer arithmetic operations incl
 
 ## Supported Operations
 
-1. **Addition**: `bit256::add()` - Adds two 256-bit integers with carry handling
-2. **Subtraction**: `bit256::subtract()` - Subtracts two 256-bit integers with borrow handling
-3. **Comparison**: `bit256::compare()` - Compares two 256-bit integers
-4. **Modular Addition**: `bit256::modular_add()` - Adds two 256-bit integers modulo a third integer
+1. **Addition**: `cu256bit::add()` - Adds two 256-bit integers with carry handling
+2. **Subtraction**: `cu256bit::subtract()` - Subtracts two 256-bit integers with borrow handling
+3. **Comparison**: `cu256bit::compare()` - Compares two 256-bit integers
+4. **Modular Addition**: `cu256bit::modular_add()` - Adds two 256-bit integers modulo a third integer
 
 ## Requirements
 
@@ -79,7 +79,7 @@ int main() {
     }
 
     // Perform addition
-    bit256::add(a, b, result, carry);
+    cu256bit::add(a, b, result, carry);
     
     // Check carry
     if (carry.cpu().item<int32_t>() > 0) {
@@ -102,7 +102,7 @@ auto carry = torch::zeros({batch_size}, torch::kInt32).cuda();
 // ... initialize a and b ...
 
 // Process entire batch
-bit256::add(a, b, result, carry);
+cu256bit::add(a, b, result, carry);
 ```
 
 ### Modular Arithmetic
@@ -116,12 +116,12 @@ auto modulus = torch::zeros({1, 8}, torch::kInt32).cuda();
 // ... initialize a, b, and modulus ...
 
 // Compute (a + b) mod modulus
-auto result = bit256::modular_add(a, b, modulus);
+auto result = cu256bit::modular_add(a, b, modulus);
 ```
 
 ## API Reference
 
-### `bit256::add(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o, torch::Tensor& c)`
+### `cu256bit::add(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o, torch::Tensor& c)`
 
 Adds two 256-bit integer tensors with carry handling.
 
@@ -133,7 +133,7 @@ Adds two 256-bit integer tensors with carry handling.
 
 **Throws:** `std::runtime_error` if tensors have invalid dimensions
 
-### `bit256::subtract(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o)`
+### `cu256bit::subtract(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o)`
 
 Subtracts two 256-bit integer tensors with borrow handling.
 
@@ -144,7 +144,7 @@ Subtracts two 256-bit integer tensors with borrow handling.
 
 **Throws:** `std::runtime_error` if tensors have invalid dimensions
 
-### `bit256::compare(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o)`
+### `cu256bit::compare(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o)`
 
 Compares two 256-bit integer tensors.
 
@@ -157,7 +157,7 @@ Compares two 256-bit integer tensors.
 
 **Throws:** `std::runtime_error` if tensors have invalid dimensions
 
-### `bit256::modular_add(const torch::Tensor& a, const torch::Tensor& b, const torch::Tensor& m)`
+### `cu256bit::modular_add(const torch::Tensor& a, const torch::Tensor& b, const torch::Tensor& m)`
 
 Performs modular addition of 256-bit integers.
 

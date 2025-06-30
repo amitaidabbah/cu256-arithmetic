@@ -8,12 +8,12 @@
  * operations using CUDA acceleration and PyTorch tensors.
  */
 
-#ifndef BIT256_H
-#define BIT256_H
+#ifndef CU256BIT_H
+#define CU256BIT_H
 
 #include <torch/torch.h>
 
-namespace bit256 {
+namespace cu256bit {
 
 /**
  * @brief Compares two 256-bit integer tensors
@@ -36,7 +36,7 @@ namespace bit256 {
  * auto a = torch::zeros({10, 8});
  * auto b = torch::zeros({10, 8});
  * auto result = torch::zeros({10});
- * bit256::compare(a, b, result);
+ * cu256bit::compare(a, b, result);
  * ```
  */
 void compare(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o);
@@ -125,6 +125,6 @@ void subtract(const torch::Tensor& a, const torch::Tensor& b, torch::Tensor& o);
  */
 torch::Tensor modular_add(const torch::Tensor& a, const torch::Tensor& b, const torch::Tensor& m);
 
-} // namespace bit256
+} // namespace cu256bit
 
-#endif // BIT256_H 
+#endif // CU256BIT_H 
