@@ -1,0 +1,15 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Find dependencies
+find_dependency(Torch REQUIRED)
+
+# Include the targets file
+include("${CMAKE_CURRENT_LIST_DIR}/256bitTargets.cmake")
+
+# Set variables for compatibility
+set(256bit_LIBRARIES 256bit::256bit)
+set(256bit_INCLUDE_DIRS "@PACKAGE_INCLUDE_DIRS@")
+
+check_required_components(256bit) 

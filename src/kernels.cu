@@ -1,7 +1,31 @@
 #include <torch/torch.h>
 #include <torch/types.h>
 #include <iostream>
-#include "kernels.h"
+
+// Forward declarations for CUDA functions
+void compare_tensors_cuda(
+    const torch::Tensor& a, 
+    const torch::Tensor& b, 
+    torch::Tensor& o);
+
+torch::Tensor modular_add_cuda(
+    const torch::Tensor& a,
+    const torch::Tensor& b,
+    torch::Tensor& m
+);
+
+void add_tensors_cuda(
+    const torch::Tensor& a, 
+    const torch::Tensor& b, 
+    torch::Tensor& o,
+    torch::Tensor& c
+);
+
+void sub_tensors_cuda(
+    const torch::Tensor& a, 
+    const torch::Tensor& b, 
+    torch::Tensor& o
+);
 
 __global__ void compare_kernel_32_256(
     const torch::PackedTensorAccessor32<int32_t, 2, torch::RestrictPtrTraits> a,
